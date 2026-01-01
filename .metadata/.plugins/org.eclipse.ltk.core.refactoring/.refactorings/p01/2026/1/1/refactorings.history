@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename type &apos;my.collection.Ex34Book&apos; to &apos;Ex33Book&apos;&#x0D;&#x0A;- Original project: &apos;p01&apos;&#x0D;&#x0A;- Original element: &apos;my.collection.Ex34Book&apos;&#x0D;&#x0A;- Renamed element: &apos;my.collection.Ex33Book&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Ex34Book&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;my.collection{Ex34Book.java[Ex34Book" matchStrategy="1" name="Ex33Book" qualified="false" references="true" similarDeclarations="false" stamp="1767241665215" textual="false" version="1.0"/>
-</session>
