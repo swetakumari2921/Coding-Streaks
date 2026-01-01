@@ -1,0 +1,98 @@
+package my.collection;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+class Emps6 implements Comparable<Emps6> {
+	private int age;
+	private String name;
+	private double sal;
+
+	// Parameterized constructor
+	public Emps6(int age, String name, double sal) {
+		this.age = age;
+		this.name = name;
+		this.sal = sal;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getSal() {
+		return sal;
+	}
+
+	public void setSal(double sal) {
+		this.sal = sal;
+	}
+
+	// ArrayList, for pre-define Objects (like Integer, String, Double, etc)
+	// overridden toString() method by default
+	// But when we use user-defaine object then we have to Override toString()
+	// manually
+	@Override
+	public String toString() {
+		return "[age=" + age + ", name=" + name + ", sal=" + sal + "]";
+	}
+
+	// Now one more scenario is there suppose age is same then i want to sort it
+	// based on name
+	@Override
+	public int compareTo(Emps6 o) {
+		int x = this.age - o.age;
+		if (x != 0) {
+			return x;
+		} else {
+			return this.name.compareTo(o.name); // The compareTo method is coming from java.lang.String
+			// because we know that each and every class of java is implementing Comparable
+			// interface so they are overridden compareTo method so the compareTo method
+			// which we are using for string comparison this the same method which is
+			// overridden by String class.
+			
+			// String's compareTo: java.lang.String
+			// Comparable's compareTo(): java.lang.Comparable
+		}
+	}
+	// Now, one more scenario is there if age is same based in sal, if sal is same based on name
+	// refer next example
+}
+
+public class Ex16 {
+	public static void main(String[] args) {
+		List<Emps6> empList = new ArrayList<>();
+		Emps6 e1 = new Emps6(26, "Tarun", 50000.0);
+		Emps6 e2 = new Emps6(26, "Deepak", 55000.0);
+		Emps6 e3 = new Emps6(30, "Ravi", 40000.0);
+		Emps6 e4 = new Emps6(21, "Alok", 35000.0);
+
+		empList.add(e1);
+		empList.add(e2);
+		empList.add(e3);
+		empList.add(e4);
+
+		System.out.println("Before sorting: ");
+		for (Emps6 e : empList) {
+			System.out.println(e);
+		}
+
+		Collections.sort(empList);
+		System.out.println("After sorting: ");
+		for (Emps6 e : empList) {
+			System.out.println(e);
+		}
+	}
+}

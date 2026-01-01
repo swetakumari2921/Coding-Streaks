@@ -1,0 +1,30 @@
+package my.collection;
+
+import java.util.HashSet;
+import java.util.Set;
+
+class Student {
+	private String name;
+
+	Student(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
+
+}
+
+public class Ex26 {
+	public static void main(String[] args) {
+		Set<Student> hs = new HashSet<Student>();
+		Student s1 = new Student("Amit");
+		Student s2 = new Student("Sumit");
+		Student s3 = new Student("Amit");
+		hs.add(s1);
+		hs.add(s2);
+		hs.add(s3);
+	}
+}

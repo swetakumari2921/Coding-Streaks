@@ -1,0 +1,19 @@
+package my.collection;
+
+class Student2 {
+	private String name;
+
+	Student2(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
+
+}
+
+public class Ex27 {
+
+}

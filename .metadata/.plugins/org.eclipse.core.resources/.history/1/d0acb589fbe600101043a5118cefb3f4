@@ -1,0 +1,15 @@
+package my.arrays.practice;
+
+import java.util.*;
+
+// 2. Find the sum of all elements in an array.
+public class Ex01 {
+public static void main(String[] args) {
+	Scanner sc = new Scanner(System.in);
+	System.out.println("Enter size of array: ");
+	byte size = sc.nextByte();
+	byte [] arr = new arr[size];
+	
+	
+}
+}

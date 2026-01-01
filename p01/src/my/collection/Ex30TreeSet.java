@@ -1,0 +1,26 @@
+package my.collection;
+
+import java.util.Set;
+import java.util.TreeSet;
+
+public class Ex30TreeSet {
+	public static void main(String[] args) {
+		Set<Integer> obj = new TreeSet<>();
+		obj.add(10);
+		obj.add(3);
+		obj.add(0);
+		obj.add(40);
+		obj.add(1);
+		obj.add(4);
+//		obj.add(null);     // java.lang.NullPointerException
+		obj.add(20);
+		obj.add(-2);
+		obj.add(78);
+		obj.add(-1);
+		obj.add(-23);
+		obj.add(43);
+		obj.add(3);
+		System.out.println(obj); // [-23, -2, -1, 0, 1, 3, 4, 10, 20, 40, 43, 78]
+
+	}
+}

@@ -1,0 +1,4 @@
+INDEX VERSION 1.134+D:\Oct18MyJava\.metadata\.plugins\org.eclipse.jdt.core
+1382950434.index
+2062954911.index
+1865797976.index

@@ -1,0 +1,20 @@
+package my.collection;
+
+import java.util.Set;
+import java.util.TreeSet;
+
+public class Ex31 {
+	public static void main(String[] args) {
+		Set<String> obj = new TreeSet<>();
+		obj.add("Sweta");
+		obj.add("Kumari");
+		obj.add("Jaypraksh");
+		obj.add("Kumari");
+		obj.add("JP");
+		obj.add("jp");
+		obj.add("AK");
+		obj.add("ak");
+		obj.add("Amouna");
+		System.out.println(obj);
+	}
+}

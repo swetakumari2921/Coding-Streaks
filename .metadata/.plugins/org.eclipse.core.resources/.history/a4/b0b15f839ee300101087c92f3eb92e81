@@ -1,0 +1,96 @@
+package my.collection;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+class Emps2 {
+	private int age;
+	private String name;
+	private double sal;
+
+	public Emps2(int age, String name, double sal) {
+		this.age = age;
+		this.name = name;
+		this.sal = sal;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getSal() {
+		return sal;
+	}
+
+	public void setSal(double sal) {
+		this.sal = sal;
+	}
+
+	@Override
+	public String toString() {
+		return "[age=" + age + ", name=" + name + ", sal=" + sal + "]";
+	}
+
+	// Here we are overriding equals() because in this code we are going to use
+	// remove() method and remove() method internally calls equals() method so we
+	// have to override equals() method if we use remove(), contains(), indexOf().
+	@Override
+	public boolean equals(Object o) {
+		Emps2 f = (Emps2) o;
+		System.out.println("Emp equals called");
+		if (this.age == f.age && this.name.equals(f.name) && this.sal == f.sal) {
+			return true;
+		}
+		return false;
+	}
+}
+
+public class Ex11 {
+	public static void main(String[] args) {
+		List<Emps2> empList = new ArrayList<>();
+		Emps2 e1 = new Emps2(24, "Tarun", 40000.0);
+		Emps2 e2 = new Emps2(35, "Vivek", 35000.0);
+		Emps2 e3 = new Emps2(23, "Gauri", 45000.0);
+
+		empList.add(e1);
+		empList.add(e2);
+		empList.add(e3);
+
+		System.out.println("Before deletion: ");
+		for (Emps2 e : empList) {
+			System.out.println(e);
+		}
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter id: ");
+		int id = sc.nextInt();
+		System.out.println("Enter name: ");
+		String name = sc.next();
+		System.out.println("Enter sal: ");
+		double sal = sc.nextDouble();
+
+		Emps2 x = new Emps2(id, name, sal);
+
+		boolean result = empList.remove(x);
+		System.out.println("Employee removed: " + result);
+
+		System.out.println("After deletion: ");
+		for (Emps2 e : empList) {
+			System.out.println(e);
+		}
+		sc.close();
+	}
+}

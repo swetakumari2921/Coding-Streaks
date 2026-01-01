@@ -1,0 +1,35 @@
+package my.arrays.practice;
+
+import java.util.*;
+
+// 5. Find the minimum element in an array.
+
+public class Ex04 {
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter size of array: ");
+		byte size = sc.nextByte();
+
+		if (size <= 0) {
+			System.err.println("Size should be positive.");
+			sc.close();
+			return;
+		}
+
+		byte[] arr = new byte[size];
+		System.out.println("Enter element 1: ");
+		arr[0] = sc.nextByte();
+		byte min = arr[0];
+
+		for (byte b = 1; b < size; b++) {
+			System.out.println("Enter element " + (b + 1) + ": ");
+			byte element = sc.nextByte();
+			if (element < min) {
+				min = element;
+			}
+		}
+		System.out.println("Minimum element: " + min);
+		sc.close();
+	}
+}

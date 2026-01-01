@@ -1,0 +1,52 @@
+package my.collection;
+
+class Emps4 {
+	private int age;
+	private String name;
+	private double salary;
+
+	public Emps4(int age, String name, double salary) {
+		this.age = age;
+		this.name = name;
+		this.salary = salary;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+
+	// ArrayList, for pre-define Objects (like Integer, String, Double, etc)
+	// overridden toString() method by default
+	// But when we use user-defaine object then we have to Override toString()
+	// manually
+	@Override
+	public String toString() {
+		return "[age=" + age + ", name=" + name + ", sal=" + sal + "]";
+	}
+}
+
+public class Ex14 {
+	public static void main(String[] args) {
+
+	}
+}

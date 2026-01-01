@@ -1,0 +1,22 @@
+package my.collection;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Ex24 {
+	public static void main(String[] args) {
+		Set<Integer> obj = new HashSet<>();
+		obj.add(100);
+		obj.add(25);
+		obj.add(30);
+		obj.add(2);
+		obj.add(-45);
+		obj.add(0);
+		obj.add(21);
+
+//		Traversing a set by using Enhanced for or for each loop		
+		for (int x : obj) {
+			System.out.println(x);
+		}
+	}
+}

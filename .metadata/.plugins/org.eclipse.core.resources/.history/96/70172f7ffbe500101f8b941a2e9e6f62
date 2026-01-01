@@ -1,0 +1,26 @@
+package my.collection;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+public class Ex25 {
+	public static void main(String[] args) {
+		Set<Integer> obj = new HashSet<>();
+		obj.add(100);
+		obj.add(25);
+		obj.add(30);
+		obj.add(2);
+		obj.add(-45);
+		obj.add(0);
+		obj.add(21);
+
+//		Traversing a set by using Iterator interface
+		Iterator it = obj.iterator();
+		while (it.hasNext()) {
+			int i = (Integer) it.next();
+			System.out.println(i);
+		}
+
+	}
+}

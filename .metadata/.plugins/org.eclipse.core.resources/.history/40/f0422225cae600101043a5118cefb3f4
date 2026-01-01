@@ -1,0 +1,19 @@
+package my.collection;
+
+public class Ex29UseLibrary {
+	public static void main(String[] args) {
+		Ex29Book book1 = new Ex29Book("Java Lizards", "A.K sinha", 599.34);
+		Ex29Book book2 = new Ex29Book("Unwrapped The Java", "Sweta Kumari", 9395.56);
+		Ex29Book book3 = new Ex29Book("Ctrl+Java", "JP Gupta", 6575.67);
+		Ex29Book book4 = new Ex29Book("Java in dream", " Mr. Kumar", 786.06);
+
+		Ex29Library lib = new Ex29Library();
+		lib.addBook(book1);
+		lib.addBook(book2);
+		lib.addBook(book3);
+		lib.addBook(book4);
+		
+		System.out.println(lib);
+		
+	}
+}
