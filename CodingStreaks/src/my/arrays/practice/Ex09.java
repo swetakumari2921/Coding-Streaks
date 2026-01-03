@@ -1,4 +1,4 @@
-package my.arrays.practice;
+ package my.arrays.practice;
 
 import java.util.*;
 
