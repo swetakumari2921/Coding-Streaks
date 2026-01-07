@@ -11,15 +11,16 @@ import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession(false);
-		if (session != null) {
-			session.invalidate();
-		}
-		resp.sendRedirect("login.jsp");
-	}
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        HttpSession session = req.getSession(false);
+        if (session != null) {
+            session.invalidate(); // destroy the session
+        }
+        resp.sendRedirect("login.jsp"); // redirect to login page
+    }
 }
+
 
 // “Why do you still need LogoutServlet?”
 // Client-side redirection does not destroy the server session. 

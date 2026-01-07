@@ -14,30 +14,35 @@ import model.User;
 
 @WebServlet("/TransferServlet")
 public class TransferServlet extends HttpServlet {
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(false);
-        if (session == null || session.getAttribute("user") == null) {
-            resp.sendRedirect("login.jsp");
-            return;
-        }
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession(false);
+		if (session == null || session.getAttribute("user") == null) {
+			resp.sendRedirect("login.jsp");
+			return;
+		}
 
-        User user = (User) session.getAttribute("user");
+		User user = (User) session.getAttribute("user");
 
-        String receiverAcc = req.getParameter("receiveAcc");
-        double amount = Double.parseDouble(req.getParameter("amount"));
+		int receiverAcc = Integer.parseInt(req.getParameter("receiveAcc"));
+		double amount = Double.parseDouble(req.getParameter("amount"));
 
-        AccountDAO accDao = new AccountDAO();
-        TransactionDAO txnDao = new TransactionDAO();
+		AccountDAO accDao = new AccountDAO();
+		TransactionDAO txnDao = new TransactionDAO();
 
-        boolean status = accDao.transfer(user.getUserId(), receiverAcc, amount);
+		boolean status = accDao.transfer(user.getUserId(), receiverAcc, amount);
 
-        if (status) {
-            txnDao.addTransaction(user.getUserId(), "TRANSFER_DEBIT", amount);
-            txnDao.addTransactionByAccount(receiverAcc, "TRANSFER_CREDIT", amount);
-            resp.sendRedirect("transfer-success.jsp"); 
-        } else {
-            resp.sendRedirect("transfer.jsp");
-        }
-    }
+		if (status) {
+		    txnDao.addTransaction(user.getUserId(), "TRANSFER_DEBIT", amount);
+		    txnDao.addTransactionByAccount(receiverAcc, "TRANSFER_CREDIT", amount);
+
+		    session.setAttribute("txAmount", amount);
+		    session.setAttribute("receiverAcc", receiverAcc);
+
+		    resp.sendRedirect("transfer-success.jsp");
+		} else {
+		    resp.sendRedirect("transfer.jsp");
+		}
+
+	}
 }

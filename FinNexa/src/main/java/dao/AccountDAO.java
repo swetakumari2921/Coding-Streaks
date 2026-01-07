@@ -6,113 +6,95 @@ import util.DBConnection;
 
 public class AccountDAO {
 	public boolean deposit(int userId, double amount) {
-		Connection con = null;
-		PreparedStatement ps = null;
-
-		try {
-			con = DBConnection.getConnetion();
-
-			String sql = "UPDATE ACCOUNTS SET BALANCE = BALANCE + ? WHERE USER_ID = ?";
-			ps = con.prepareStatement(sql);
-			ps.setDouble(1, amount);
-			ps.setInt(2, userId);
-
-			return ps.executeUpdate() > 0;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+	    String sql = "UPDATE accounts SET balance = balance + ? WHERE user_id = ?";
+	    try (Connection con = DBConnection.getConnetion();
+	         PreparedStatement ps = con.prepareStatement(sql)) {
+	        ps.setDouble(1, amount);
+	        ps.setInt(2, userId);
+	        return ps.executeUpdate() > 0;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
 	}
 
 	public boolean withdraw(int userId, double amount) {
-		Connection con = null;
-		PreparedStatement ps1 = null;
-		PreparedStatement ps2 = null;
-		ResultSet rs = null;
+	    String checkSql = "SELECT balance FROM accounts WHERE user_id = ?";
+	    String updateSql = "UPDATE accounts SET balance = balance - ? WHERE user_id = ?";
+	    try (Connection con = DBConnection.getConnetion();
+	         PreparedStatement psCheck = con.prepareStatement(checkSql)) {
 
-		try {
-			con = DBConnection.getConnetion();
+	        psCheck.setInt(1, userId);
+	        try (ResultSet rs = psCheck.executeQuery()) {
+	            if (!rs.next() || rs.getDouble("balance") < amount) {
+	                return false;
+	            }
+	        }
 
-			String checkSql1 = "SELECT BALANCE FROM ACCOUNTS WHERE USER_ID = ?";
-			ps1 = con.prepareStatement(checkSql1);
-			ps1.setInt(1, userId);
-			rs = ps1.executeQuery();
+	        try (PreparedStatement psUpdate = con.prepareStatement(updateSql)) {
+	            psUpdate.setDouble(1, amount);
+	            psUpdate.setInt(2, userId);
+	            return psUpdate.executeUpdate() > 0;
+	        }
 
-			if (rs.next()) {
-				double balance = rs.getDouble("balance");
-
-				if (balance < amount) {
-					return false;
-				}
-			}
-
-			String updateSql = "UPDATE ACCOUNTS SET BALANCE = BALANCE - ? WHERE USER_ID = ?";
-			ps2 = con.prepareStatement(updateSql);
-			ps2.setDouble(1, amount);
-			ps2.setInt(2, userId);
-
-			return ps2.executeUpdate() > 0;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
 	}
 
-	public boolean transfer(int senderUserId, String receiverAcc, double amount) {
 
-		Connection con = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
+	public boolean transfer(int senderUserId, int receiverAccountId, double amount) {
+	    try (Connection con = DBConnection.getConnetion()) {
+	        con.setAutoCommit(false);
 
-		try {
-			con = DBConnection.getConnetion();
-			con.setAutoCommit(false);
+	        // Check sender balance
+	        try (PreparedStatement psSender = con.prepareStatement(
+	                "SELECT balance FROM accounts WHERE user_id = ?")) {
+	            psSender.setInt(1, senderUserId);
+	            try (ResultSet rs = psSender.executeQuery()) {
+	                if (!rs.next() || rs.getDouble("balance") < amount) {
+	                    con.rollback();
+	                    return false;
+	                }
+	            }
+	        }
 
-			String senderSql = "SELECT balance FROM accounts WHERE user_id = ?";
-			ps = con.prepareStatement(senderSql);
-			ps.setInt(1, senderUserId);
-			rs = ps.executeQuery();
+	        // Check receiver exists
+	        try (PreparedStatement psReceiver = con.prepareStatement(
+	                "SELECT account_id FROM accounts WHERE account_id = ?")) {
+	            psReceiver.setInt(1, receiverAccountId);
+	            try (ResultSet rs = psReceiver.executeQuery()) {
+	                if (!rs.next()) {
+	                    con.rollback();
+	                    return false;
+	                }
+	            }
+	        }
 
-			if (!rs.next() || rs.getDouble("balance") < amount) {
-				con.rollback();
-				return false;
-			}
+	        // Debit sender
+	        try (PreparedStatement psDebit = con.prepareStatement(
+	                "UPDATE accounts SET balance = balance - ? WHERE user_id = ?")) {
+	            psDebit.setDouble(1, amount);
+	            psDebit.setInt(2, senderUserId);
+	            psDebit.executeUpdate();
+	        }
 
-			String receiverSql = "SELECT user_id FROM accounts WHERE account_no = ?";
-			ps = con.prepareStatement(receiverSql);
-			ps.setString(1, receiverAcc);
-			rs = ps.executeQuery();
+	        // Credit receiver
+	        try (PreparedStatement psCredit = con.prepareStatement(
+	                "UPDATE accounts SET balance = balance + ? WHERE account_id = ?")) {
+	            psCredit.setDouble(1, amount);
+	            psCredit.setInt(2, receiverAccountId);
+	            psCredit.executeUpdate();
+	        }
 
-			if (!rs.next()) {
-				con.rollback();
-				return false;
-			}
+	        con.commit();
+	        return true;
 
-			int receiverUserId = rs.getInt("user_id");
-
-			String debitSql = "UPDATE accounts SET balance = balance - ? WHERE user_id = ?";
-			ps = con.prepareStatement(debitSql);
-			ps.setDouble(1, amount);
-			ps.setInt(2, senderUserId);
-			ps.executeUpdate();
-
-			String creditSql = "UPDATE accounts SET balance = balance + ? WHERE user_id = ?";
-			ps = con.prepareStatement(creditSql);
-			ps.setDouble(1, amount);
-			ps.setInt(2, receiverUserId);
-			ps.executeUpdate();
-
-			con.commit();
-			return true;
-
-		} catch (Exception e) {
-			try {
-				con.rollback();
-			} catch (Exception ex) {
-			}
-			e.printStackTrace();
-			return false;
-		}
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return false;
+	    }
 	}
+
 }

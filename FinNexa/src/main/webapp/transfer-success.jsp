@@ -103,8 +103,16 @@ button:hover {
         <div class="popup">
             <div class="success-icon">✓</div>
             <h2>Success!</h2>
-            <p>Your fund transfer was successful.<br>The amount has been updated.</p>
             
+<!--             <p>Your fund transfer was successful.<br>The amount has been updated.</p>
+ -->            
+<p>
+    ₹<b>${sessionScope.txAmount}</b> has been transferred successfully<br>
+    To Account ID: <b>${sessionScope.receiverAcc}</b>
+</p>
+
+
+ 
             <button onclick="goDashboard()">OK</button>
 
             <div class="footer-text">© 2026 FinNexa. All Rights Reserved.</div>

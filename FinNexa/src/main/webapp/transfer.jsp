@@ -152,14 +152,13 @@
       <form action="TransferServlet" method="post">
         
         <label for="receiverAcc">Receiver Account Number</label>
-        <input
-          type="text"
-          id="receiverAcc"
-          name="receiverAcc"
-          placeholder="Enter Account Number"
-          required
-          autofocus
-        /><br /><br />
+        <input 
+        	   type="number" 
+        	   name="receiveAcc" 
+        	   placeholder="Receiver Account ID" 
+        	   required/>
+        	   </br></br>
+
 
         <label for="amount">Amount (₹)</label>
         <input

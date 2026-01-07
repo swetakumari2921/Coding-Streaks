@@ -15,16 +15,28 @@ import model.User;
 
 @WebServlet("/TransactionServlet")
 public class TransactionServlet extends HttpServlet {
+	
+	// For form submissions (if any)
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp); // just call doGet so POST works the same
+    }
+
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession(false);
+		if (session == null || session.getAttribute("user") == null) {
+            resp.sendRedirect("login.jsp");
+            return;
+        }
+
 		User user = (User) session.getAttribute("user");
 		
-		TransactionDAO dao = new TransactionDAO();
-		List<Transaction> list = dao.getTransactions(user.getUserId());
-		
-		req.setAttribute("transactions", list);
-		req.getRequestDispatcher("transactions.jsp").forward(req, resp);
+		TransactionDAO txnDao = new TransactionDAO();
+        List<Transaction> transactions = txnDao.getTransactions(user.getUserId());
+
+        req.setAttribute("transactions", transactions);
+        req.getRequestDispatcher("transaction-history.jsp").forward(req, resp);
 	}
 }
 

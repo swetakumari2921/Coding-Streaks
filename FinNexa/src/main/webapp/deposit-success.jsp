@@ -113,6 +113,11 @@
 
     <script>
         function goDashboard() {
+            // Session clear ke liye request bhejna (optional, simple method JSP me)
+            <% 
+                session.removeAttribute("txAmount"); 
+                session.removeAttribute("receiverAcc"); 
+            %>
             window.location.href = "dashboard.jsp";
         }
     </script>
