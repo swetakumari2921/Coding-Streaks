@@ -17,6 +17,6 @@ public class Ex04 {
 		System.out.println(sports.get(0)); // Criket 
 		System.out.println(sports.get(1)); // Football
 		System.out.println(sports.get(2)); // Badminton
-		System.out.println(sports.get(3)); // java.lang.IndexOutOfBoundsException
+//		System.out.println(sports.get(3)); // java.lang.IndexOutOfBoundsException
 	}
 }

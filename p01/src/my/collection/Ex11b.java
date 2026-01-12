@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-class Emps3 implements Comparable<Emps3> {
+class Emps3  {
 	private int age;
 	private String name;
 	private double sal;
@@ -54,11 +54,6 @@ class Emps3 implements Comparable<Emps3> {
 			return true;
 		}
 		return false;
-	}
-
-	@Override
-	public int compareTo(Emps3 o) {
-		return 0;
 	}
 }
 

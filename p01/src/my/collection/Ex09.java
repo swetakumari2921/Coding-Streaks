@@ -16,8 +16,8 @@ public class Ex09 {
 		System.out.println("Before deletion: "+months);
 		
 		// public boolean remove(Object);
-		System.out.println("Is march removed? "+months.remove("March")); // True
-		System.out.println("After deletion: "+months);
+//		System.out.println("Is march removed? "+months.remove("March")); // True
+//		System.out.println("After deletion: "+months);
 
 		// Before executing this line comment out the just previous line
 		// public Object remove(int);

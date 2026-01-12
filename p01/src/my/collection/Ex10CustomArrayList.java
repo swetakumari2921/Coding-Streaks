@@ -44,7 +44,7 @@ class Emps {
 		this.sal = sal;
 	}
 
-//	If your ArrayList stores custom objects, and you have to override toString()
+//	If your ArrayList stores custom objects, then you have to override toString()
 //	because for pre-defined objects ArrayList already overridden the toString()
 	@Override
 	public String toString() {

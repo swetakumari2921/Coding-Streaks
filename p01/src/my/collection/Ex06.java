@@ -15,11 +15,15 @@ public class Ex06 {
 		}
 
 		// printing them back in reverse order vertically
+		System.out.println("printing them back in reverse order vertically");
 		for (int i = months.size() - 1; i >= 0; i--) {
 			System.out.println(months.get(i));
 		}
 		
+		System.out.println();
+		
 		// printing them in original order vertically
+		System.out.println("printing them in original order vertically");
 		for (int i = 0; i <= months.size() - 1; i++) {
 			System.out.println(months.get(i));
 		}

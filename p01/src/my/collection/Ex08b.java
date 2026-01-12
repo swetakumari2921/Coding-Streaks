@@ -21,6 +21,7 @@ public class Ex08b {
 		int n = sc.nextInt();
 		boolean found = num.contains(n); // public boolean contains(Object);
 		if (found == false) {
+			System.out.println(found);
 			System.out.println("Given number is not present!");
 			return;
 		} else {

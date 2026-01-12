@@ -14,8 +14,8 @@ public class Ex09aa {
 		System.out.println("Before deletion: " + movies);
 		System.out.println("Is march removed? " + movies.remove(2));
 		System.out.println("After deletion: " + movies);
-		System.out.println("Is August removed: " + movies.remove(7));
-		System.out.println("After deletion: " + movies);
+//		System.out.println("Is August removed: " + movies.remove(7));
+//		System.out.println("After deletion: " + movies);
 
 	}
 }

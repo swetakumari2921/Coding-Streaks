@@ -41,7 +41,7 @@ class Emps2 {
 
 	
 	// ArrayList, for pre-define Objects (like Integer, String, Double, etc) overridden toString() method by default
-	// But when we use user-defaine object then we have to Override toString() manually
+	// But when we use user-defined object then we have to Override toString() manually
 	@Override
 	public String toString() {
 		return "[age=" + age + ", name=" + name + ", sal=" + sal + "]";

@@ -22,7 +22,7 @@ public class Ex26 {
 			arr[i] = sc.nextInt();
 		}
 
-		// 🔹 Logic: move zeros to the end
+		// Logic: move zeros to the end
 		int index = 0;
 		for (int i = 0; i < n; i++) {
 			if (arr[i] != 0) {
@@ -36,7 +36,7 @@ public class Ex26 {
 			index++;
 		}
 
-		// 🔹 Output
+		// Output
 		System.out.println("Array after moving zeros to end:");
 		for (int i = 0; i < n; i++) {
 			System.out.print(arr[i] + " ");

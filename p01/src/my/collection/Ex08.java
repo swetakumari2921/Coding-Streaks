@@ -21,6 +21,7 @@ public class Ex08 {
 		String str = sc.nextLine();		
 		boolean found = sports.contains(str); // public boolean contains(Object);
 		if (found == false) {
+			System.out.println(found);
 			System.out.println("Given sport is not present!");
 			return;
 		} else {

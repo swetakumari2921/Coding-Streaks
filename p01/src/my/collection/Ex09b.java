@@ -21,6 +21,7 @@ public class Ex09b {
 
 		// public Object remove(int);
 //		System.out.println("Is 45 removed? "+ num.remove(2));
+//		System.out.println(num);
 
 		// Before executing this line comment out the just previous line
 		// public boolean remove(Object);

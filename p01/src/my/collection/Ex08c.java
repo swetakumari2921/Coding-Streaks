@@ -19,6 +19,7 @@ public class Ex08c {
 		String input = sc.nextLine();
 		boolean found = movies.contains(input);
 		if (found == false) {
+			System.out.println(found);
 			System.out.println("Record not found!");
 			return;
 		}
