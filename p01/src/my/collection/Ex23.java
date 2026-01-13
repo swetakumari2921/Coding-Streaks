@@ -15,6 +15,6 @@ public class Ex23 {
 		}
 		
 		System.out.println(months);
-
+		sc.close();
 	}
 }

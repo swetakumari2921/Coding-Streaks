@@ -1,7 +1,6 @@
 package my.collection;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Ex18LinkedList {
 	public static void main(String[] args) {
