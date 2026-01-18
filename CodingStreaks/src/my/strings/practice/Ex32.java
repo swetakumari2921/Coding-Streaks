@@ -2,6 +2,8 @@ package my.strings.practice;
 
 import java.util.Scanner;
 
+// Remove vowels from a string
+
 public class Ex32 {
 	public static String removeVowels(String str) {
 

@@ -2,6 +2,8 @@ package my.arrays.practice;
 
 import java.util.Scanner;
 
+// Find the leader elements in an array (element greater than all right elements).
+
 public class Ex32 {
 	public static void findLeaders(int[] arr) {
 
