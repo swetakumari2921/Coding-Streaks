@@ -1,0 +1,51 @@
+package my.arrays.practice;
+
+// Find the maximum product subarray.
+
+import java.util.Scanner;
+
+public class Ex39 {
+
+	public static int maxProduct(int[] nums) {
+		if (nums == null || nums.length == 0)
+			return 0;
+
+		int maxProduct = nums[0];
+		int currentMax = nums[0];
+		int currentMin = nums[0];
+		for (int i = 1; i < nums.length; i++) {
+			int num = nums[i];
+
+			if (num < 0) {
+				int temp = currentMax;
+				currentMax = currentMin;
+				currentMin = temp;
+			}
+
+			currentMax = Math.max(num, currentMax * num);
+			currentMin = Math.min(num, currentMin * num);
+
+			maxProduct = Math.max(maxProduct, currentMax);
+		}
+
+		return maxProduct;
+	}
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		System.out.print("Enter the size of the array: ");
+		int n = sc.nextInt();
+
+		int[] arr = new int[n];
+		System.out.println("Enter the elements of the array:");
+		for (int i = 0; i < n; i++) {
+			arr[i] = sc.nextInt();
+		}
+
+		int result = maxProduct(arr);
+		System.out.println("Maximum product subarray: " + result);
+
+		sc.close();
+	}
+}
