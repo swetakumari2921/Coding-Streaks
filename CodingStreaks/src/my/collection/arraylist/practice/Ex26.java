@@ -14,7 +14,7 @@ class User {
 	void calculateFee() {
 		totalFee = 0;
 		for (int days : overdueDays) {
-			totalFee += days; // ₹1 per day
+			totalFee += days; 
 		}
 	}
 }
@@ -28,7 +28,6 @@ public class Ex26 {
 		System.out.print("Enter number of users: ");
 		int n = sc.nextInt();
 
-		// Input users and borrowed books
 		for (int i = 0; i < n; i++) {
 			System.out.println("\nEnter user name:");
 			String name = sc.next();
@@ -46,7 +45,6 @@ public class Ex26 {
 			users.add(user);
 		}
 
-		// Returned books
 		System.out.println("\nEnter number of returned books:");
 		int returned = sc.nextInt();
 
@@ -65,17 +63,13 @@ public class Ex26 {
 				}
 			}
 		}
-
-		// Calculate fees
 		System.out.println("\nCalculating total late fees...");
 		for (User u : users) {
 			u.calculateFee();
 		}
 
-		// Sort users by late fee (descending)
 		users.sort((u1, u2) -> u2.totalFee - u1.totalFee);
 
-		// Final output
 		System.out.println("\n===== Final Late Fee Summary =====");
 		for (User u : users) {
 			System.out.println(u.name);
