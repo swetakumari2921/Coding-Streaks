@@ -2,6 +2,8 @@ package my.arrays.practice;
 
 import java.util.*;
 
+// Find subarray with given sum (handles negative numbers).
+
 public class Ex43 {
 	public static int[] findSubarray(int[] arr, int targetSum) {
 		Map<Integer, Integer> map = new HashMap<>();

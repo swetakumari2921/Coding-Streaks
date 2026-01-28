@@ -1,5 +1,7 @@
 package my.strings.practice;
 
+// Decode a run-length encoded string
+
 public class Ex43 {
 	public static String decodeRLE(String encoded) {
 		if (encoded == null || encoded.isEmpty()) {
