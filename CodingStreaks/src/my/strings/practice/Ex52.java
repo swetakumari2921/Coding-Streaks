@@ -2,7 +2,7 @@ package my.strings.practice;
 
 import java.util.Scanner;
 
-public class Exx52 {
+public class Ex52 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
