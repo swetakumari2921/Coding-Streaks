@@ -1,0 +1,48 @@
+package my.strings.practice;
+
+import java.util.Scanner;
+
+public class Ex55 {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		System.out.print("Enter first string: ");
+		String s1 = sc.nextLine();
+		System.out.print("Enter second string: ");
+		String s2 = sc.nextLine();
+
+		int n = s1.length();
+		int m = s2.length();
+		int[][] dp = new int[n + 1][m + 1];
+
+		for (int i = 1; i <= n; i++) {
+			for (int j = 1; j <= m; j++) {
+				if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
+					dp[i][j] = dp[i - 1][j - 1] + 1;
+				} else {
+					dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+				}
+			}
+		}
+
+		int index = dp[n][m];
+		char[] lcs = new char[index];
+		int i = n, j = m;
+
+		while (i > 0 && j > 0) {
+			if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
+				lcs[index - 1] = s1.charAt(i - 1);
+				i--;
+				j--;
+				index--;
+			} else if (dp[i - 1][j] > dp[i][j - 1]) {
+				i--;
+			} else {
+				j--;
+			}
+		}
+
+		System.out.println("Longest Common Subsequence: " + new String(lcs));
+	}
+}
