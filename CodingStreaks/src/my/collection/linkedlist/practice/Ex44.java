@@ -32,5 +32,7 @@ public class Ex44 {
 		for (int val : odd) {
 			System.out.print(val);
 		}
+		
+		sc.close();
 	}
 }
