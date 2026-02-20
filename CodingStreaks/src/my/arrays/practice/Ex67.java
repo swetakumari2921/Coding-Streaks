@@ -5,33 +5,48 @@ import java.util.Scanner;
 public class Ex67 {
 
 	public static void main(String[] args) {
+
 		Scanner sc = new Scanner(System.in);
 
-		System.out.println("Enter text:");
-		String text = sc.nextLine();
+		System.out.println("Enter number of rows:");
+		int rows = sc.nextInt();
 
-		System.out.println("Enter pattern:");
-		String pattern = sc.nextLine();
+		System.out.println("Enter number of columns:");
+		int cols = sc.nextInt();
 
-		int n = text.length();
-		int m = pattern.length();
-		boolean found = false;
+		int[][] arr = new int[rows][cols];
 
-		for (int i = 0; i <= n - m; i++) {
-			int j;
-			for (j = 0; j < m; j++) {
-				if (text.charAt(i + j) != pattern.charAt(j)) {
-					break;
+		System.out.println("Enter matrix elements row by row:");
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < cols; j++) {
+				arr[i][j] = sc.nextInt();
+			}
+		}
+
+		int maxSum = Integer.MIN_VALUE;
+
+		for (int left = 0; left < cols; left++) {
+
+			int[] temp = new int[rows];
+
+			for (int right = left; right < cols; right++) {
+
+				for (int i = 0; i < rows; i++) {
+					temp[i] += arr[i][right];
 				}
-			}
-			if (j == m) {
-				System.out.println("Pattern found at index: " + i);
-				found = true;
+
+				int currentSum = temp[0];
+				int bestSum = temp[0];
+
+				for (int i = 1; i < rows; i++) {
+					currentSum = Math.max(temp[i], currentSum + temp[i]);
+					bestSum = Math.max(bestSum, currentSum);
+				}
+
+				maxSum = Math.max(maxSum, bestSum);
 			}
 		}
 
-		if (!found) {
-			System.out.println("Pattern not found");
-		}
+		System.out.println("Maximum sum rectangle in the matrix is: " + maxSum);
 	}
 }
