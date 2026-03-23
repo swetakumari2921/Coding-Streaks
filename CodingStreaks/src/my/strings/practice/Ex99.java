@@ -4,7 +4,7 @@ public class Ex99 {
 	public static void main(String[] args) {
 		String s = "aaabbc";
 		String compressed = compressString(s);
-		System.out.println(compressed); // Output: a3b2c1
+		System.out.println(compressed); 
 	}
 
 	public static String compressString(String s) {
@@ -25,7 +25,6 @@ public class Ex99 {
 			}
 		}
 
-		// Append last character count
 		result += currChar + String.valueOf(count);
 		return result;
 	}
