@@ -18,6 +18,8 @@ public class Ex98 {
 		}
 
 		
+		
+		
 		int currOnes = 0;
 
 		for (int i = 0; i < totalOnes; i++) {
