@@ -17,6 +17,7 @@ public class Ex111 {
 		dummy.next = head;
 
 		Node55 prev = dummy;
+		
 
 		while (head != null) {
 
