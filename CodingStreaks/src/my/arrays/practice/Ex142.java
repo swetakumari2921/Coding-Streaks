@@ -5,7 +5,7 @@ public class Ex142 {
 		if (n == 0)
 			return 0;
 
-		int j = 0; // index for unique elements
+		int j = 0; 
 
 		for (int i = 1; i < n; i++) {
 			if (arr[i] != arr[j]) {
@@ -13,7 +13,7 @@ public class Ex142 {
 				arr[j] = arr[i];
 			}
 		}
-		return j + 1; // new size
+		return j + 1; 
 	}
 
 	public static void main(String[] args) {
