@@ -4,7 +4,6 @@ class TextEditor {
 	char[] text;
 	int length;
 
-	// stack to store history (each state is stored as char array)
 	char[][] history;
 	int top;
 
@@ -16,6 +15,7 @@ class TextEditor {
 		top = -1;
 	}
 
+	
 	// Save current state to history stack
 	private void saveState() {
 		top++;
@@ -71,6 +71,7 @@ public class Ex142 {
 	        editor.insert("hello");
 	        editor.print(); // hello
 
+	        
 	        editor.insert(" world");
 	        editor.print(); // hello world
 
