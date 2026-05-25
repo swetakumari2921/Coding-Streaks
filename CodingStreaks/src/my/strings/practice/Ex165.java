@@ -2,43 +2,48 @@ package my.strings.practice;
 
 public class Ex165 {
 
-	// function to count digits
-	static int countDigits(int n) {
-		n = Math.abs(n); // handle negative numbers
-		int count = 0;
-
-		if (n == 0)
-			return 1;
-
-		while (n > 0) {
-			count++;
-			n = n / 10;
+	// function to check if substring already exists in result
+	static boolean isAlreadyAdded(String[] res, int size, String s) {
+		for (int i = 0; i < size; i++) {
+			if (res[i].equals(s)) {
+				return true;
+			}
 		}
-		return count;
+		return false;
 	}
 
-	// function to find number with max digits
-	static int findMaxDigitNumber(int[] arr) {
-		int maxDigits = 0;
-		int result = arr[0];
+	static void findDuplicateSubstrings(String str) {
+		int n = str.length();
+		String[] result = new String[n * (n + 1) / 2]; // max possible substrings
+		int k = 0;
 
-		for (int i = 0; i < arr.length; i++) {
-			int digits = countDigits(arr[i]);
+		for (int i = 0; i < n; i++) {
+			for (int j = i + 1; j <= n; j++) {
 
-			if (digits > maxDigits) {
-				maxDigits = digits;
-				result = arr[i];
+				String sub = str.substring(i, j);
+
+				// check if this substring appears again
+				for (int x = i + 1; x <= n - sub.length(); x++) {
+					if (str.substring(x, x + sub.length()).equals(sub)) {
+
+						if (!isAlreadyAdded(result, k, sub)) {
+							result[k++] = sub;
+						}
+						break;
+					}
+				}
 			}
 		}
 
-		return result;
+		// print result
+		System.out.println("Duplicate substrings:");
+		for (int i = 0; i < k; i++) {
+			System.out.println(result[i]);
+		}
 	}
 
 	public static void main(String[] args) {
-		int[] arr = { 12, 345, 6, 7890, 45 };
-
-		int ans = findMaxDigitNumber(arr);
-
-		System.out.println("Number with maximum digits: " + ans);
+		String str = "banana";
+		findDuplicateSubstrings(str);
 	}
 }
