@@ -1,8 +1,8 @@
-package my.arrays.practice;
+package my.collection.arraylist.practice;
 
 import java.util.ArrayList;
 
-public class Ex204 {
+public class Ex193 {
 
 	public static int secondSmallestMissingPositive(ArrayList<Integer> list) {
 		int missingCount = 0;
