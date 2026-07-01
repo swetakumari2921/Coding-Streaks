@@ -1,5 +1,7 @@
 package my.arrays.practice;
 
+import java.util.ArrayList;
+
 public class Ex204 {
 
 	public static int secondSmallestMissingPositive(ArrayList<Integer> list) {
