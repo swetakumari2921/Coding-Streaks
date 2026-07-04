@@ -3,7 +3,7 @@ package my.queue.practice;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Ex04 {
+public class Ex06 {
 
 	public static void main(String[] args) {
 
@@ -14,16 +14,14 @@ public class Ex04 {
 		queue.offer(30);
 		queue.offer(40);
 
-		System.out.println("Original Queue: " + queue);
+		System.out.println("Queue: " + queue);
 
-		// dequeue (remove front element)
+		// rear element
 		if (!queue.isEmpty()) {
-			int removedElement = queue.poll();
-			System.out.println("Dequeued Element: " + removedElement);
+			int rearElement = ((LinkedList<Integer>) queue).getLast();
+			System.out.println("Rear Element: " + rearElement);
 		} else {
 			System.out.println("Queue is Empty");
 		}
-
-		System.out.println("Queue after dequeue: " + queue);
 	}
 }

@@ -16,9 +16,10 @@ public class Ex05 {
 
 		System.out.println("Queue: " + queue);
 
+		// front element (peek)
 		if (!queue.isEmpty()) {
-			int rear = ((LinkedList<Integer>) queue).getLast();
-			System.out.println("Rear Element: " + rear);
+			int frontElement = queue.peek();
+			System.out.println("Front Element: " + frontElement);
 		} else {
 			System.out.println("Queue is Empty");
 		}
