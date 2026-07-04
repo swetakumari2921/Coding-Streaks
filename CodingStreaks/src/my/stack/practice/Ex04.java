@@ -4,20 +4,24 @@ import java.util.Stack;
 
 public class Ex04 {
 
-	static void pushElement(Stack<Integer> stack, int value) {
-		stack.push(value);
-	}
-
 	public static void main(String[] args) {
 
 		Stack<Integer> stack = new Stack<>();
 
-		pushElement(stack, 10);
-		pushElement(stack, 20);
-		pushElement(stack, 30);
-		pushElement(stack, 40);
-		pushElement(stack, 50);
+		stack.push(10);
+		stack.push(20);
+		stack.push(30);
+		stack.push(40);
 
-		System.out.println("Stack after push operations: " + stack);
+		System.out.println("Original Stack: " + stack);
+
+		if (!stack.isEmpty()) {
+			int poppedElement = stack.pop();
+			System.out.println("Popped Element: " + poppedElement);
+		} else {
+			System.out.println("Stack is Empty");
+		}
+
+		System.out.println("Stack after pop: " + stack);
 	}
 }

@@ -1,25 +1,37 @@
 package my.stack.practice;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Stack;
 
 public class Ex06 {
 
 	public static void main(String[] args) {
 
-		Queue<Integer> queue = new LinkedList<>();
+		Stack<Integer> stack = new Stack<>();
 
-		queue.add(10);
-		queue.add(20);
-		queue.add(30);
-		queue.add(40);
+		stack.push(10);
+		stack.push(20);
+		stack.push(30);
 
-		System.out.println("Queue: " + queue);
+		System.out.println("Stack: " + stack);
 
-		// get front element
-		int front = queue.peek();
+		// check if empty
+		if (stack.isEmpty()) {
+			System.out.println("Stack is Empty");
+		} else {
+			System.out.println("Stack is NOT Empty");
+		}
 
-		System.out.println("Front Element = " + front);
-		System.out.println("Queue after peek: " + queue);
+		// pop all elements
+		stack.pop();
+		stack.pop();
+		stack.pop();
+
+		System.out.println("After popping all elements");
+
+		if (stack.isEmpty()) {
+			System.out.println("Stack is Empty now");
+		} else {
+			System.out.println("Stack is NOT Empty");
+		}
 	}
 }

@@ -8,17 +8,18 @@ public class Ex05 {
 
 		Stack<Integer> stack = new Stack<>();
 
-		stack.push(10);
-		stack.push(20);
-		stack.push(30);
-		stack.push(40);
+		stack.push(100);
+		stack.push(200);
+		stack.push(300);
+		stack.push(400);
 
-		System.out.println("Stack before pop: " + stack);
+		System.out.println("Stack: " + stack);
 
-		// pop operation
-		int poppedElement = stack.pop();
-
-		System.out.println("Popped Element = " + poppedElement);
-		System.out.println("Stack after pop: " + stack);
+		if (!stack.isEmpty()) {
+			int topElement = stack.peek();
+			System.out.println("Top Element (Peek): " + topElement);
+		} else {
+			System.out.println("Stack is Empty");
+		}
 	}
 }
