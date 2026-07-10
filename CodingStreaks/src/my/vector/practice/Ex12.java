@@ -1,49 +1,42 @@
 package my.vector.practice;
 
-import java.util.Stack;
+import java.util.Vector;
 
 public class Ex12 {
 
-	static boolean isValidParentheses(String str) {
+	public class Ex6 {
 
-		Stack<Character> stack = new Stack<>();
+		static int findIndex(Vector<Integer> vector, int element) {
 
-		for (int i = 0; i < str.length(); i++) {
+			for (int i = 0; i < vector.size(); i++) {
 
-			char ch = str.charAt(i);
-
-			// Opening brackets
-			if (ch == '(' || ch == '{' || ch == '[') {
-				stack.push(ch);
-			}
-
-			// Closing brackets
-			else if (ch == ')' || ch == '}' || ch == ']') {
-
-				if (stack.isEmpty()) {
-					return false;
-				}
-
-				char top = stack.pop();
-
-				if ((ch == ')' && top != '(') || (ch == '}' && top != '{') || (ch == ']' && top != '[')) {
-
-					return false;
+				if (vector.get(i) == element) {
+					return i;
 				}
 			}
+
+			return -1;
 		}
 
-		return stack.isEmpty();
-	}
+		public static void main(String[] args) {
 
-	public static void main(String[] args) {
+			Vector<Integer> vector = new Vector<>();
 
-		String expression = "{[()]}";
+			vector.add(5);
+			vector.add(10);
+			vector.add(15);
+			vector.add(20);
+			vector.add(25);
 
-		if (isValidParentheses(expression)) {
-			System.out.println("Valid Parentheses");
-		} else {
-			System.out.println("Invalid Parentheses");
+			int element = 15;
+
+			int index = findIndex(vector, element);
+
+			if (index != -1) {
+				System.out.println("Element found at index: " + index);
+			} else {
+				System.out.println("Element not found");
+			}
 		}
 	}
 }
