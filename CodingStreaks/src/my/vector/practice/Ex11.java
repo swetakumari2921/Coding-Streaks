@@ -2,7 +2,7 @@ package my.vector.practice;
 
 import java.util.Vector;
 
-public class Ex111 {
+public class Ex11 {
 
 	public static void main(String[] args) {
 
