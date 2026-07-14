@@ -10,24 +10,27 @@ class ListNode62 {
 	}
 }
 
-class TreeNode {
+class TreeNode2 {
 	int data;
-	TreeNode left, right;
+	TreeNode2 left;
+	TreeNode2 right;
 
-	TreeNode(int data) {
+	TreeNode2(int data) {
 		this.data = data;
-		this.left = this.right = null;
+		this.left = null;
+		this.right = null;
 	}
 }
 
 public class Ex198 {
 
-	static TreeNode sortedListToBST(ListNode62 head) {
+	static TreeNode2 sortedListToBST(ListNode62 head) {
+
 		if (head == null)
 			return null;
 
 		if (head.next == null)
-			return new TreeNode(head.data);
+			return new TreeNode2(head.data);
 
 		ListNode62 prev = null;
 		ListNode62 slow = head;
@@ -42,7 +45,7 @@ public class Ex198 {
 		if (prev != null)
 			prev.next = null;
 
-		TreeNode root = new TreeNode(slow.data);
+		TreeNode2 root = new TreeNode2(slow.data);
 
 		if (head != slow)
 			root.left = sortedListToBST(head);
@@ -52,13 +55,13 @@ public class Ex198 {
 		return root;
 	}
 
-	static void preorder(TreeNode root) {
+	static void inorder(TreeNode2 root) {
 		if (root == null)
 			return;
 
+		inorder(root.left);
 		System.out.print(root.data + " ");
-		preorder(root.left);
-		preorder(root.right);
+		inorder(root.right);
 	}
 
 	public static void main(String[] args) {
@@ -71,9 +74,9 @@ public class Ex198 {
 		head.next.next.next.next.next = new ListNode62(6);
 		head.next.next.next.next.next.next = new ListNode62(7);
 
-		TreeNode root = sortedListToBST(head);
+		TreeNode2 root = sortedListToBST(head);
 
-		System.out.println("Preorder Traversal of Balanced BST:");
-		preorder(root);
+		System.out.println("Inorder Traversal of Balanced BST:");
+		inorder(root);
 	}
 }
