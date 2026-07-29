@@ -4,81 +4,55 @@ import java.util.ArrayList;
 
 public class Ex221 {
 
-    static class Cell {
-        int row, col, time;
+	public static int minimumSubsetSumDifference(ArrayList<Integer> nums) {
 
-        Cell(int row, int col, int time) {
-            this.row = row;
-            this.col = col;
-            this.time = time;
-        }
-    }
+		int totalSum = 0;
+		for (int num : nums) {
+			totalSum += num;
+		}
 
-    public static int minimumTimeToRot(ArrayList<ArrayList<Integer>> grid) {
-        int rows = grid.size();
-        int cols = grid.get(0).size();
+		int n = nums.size();
 
-        ArrayList<Cell> queue = new ArrayList<>();
-        int front = 0;
-        int fresh = 0;
+		// dp[i][j] = true if sum j can be formed using first i elements
+		boolean[][] dp = new boolean[n + 1][totalSum + 1];
 
-        // Store all rotten oranges and count fresh oranges
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cols; j++) {
-                if (grid.get(i).get(j) == 2) {
-                    queue.add(new Cell(i, j, 0));
-                } else if (grid.get(i).get(j) == 1) {
-                    fresh++;
-                }
-            }
-        }
+		for (int i = 0; i <= n; i++) {
+			dp[i][0] = true;
+		}
 
-        int[] dr = {-1, 1, 0, 0};
-        int[] dc = {0, 0, -1, 1};
-        int time = 0;
+		for (int i = 1; i <= n; i++) {
+			for (int sum = 1; sum <= totalSum; sum++) {
 
-        while (front < queue.size()) {
-            Cell current = queue.get(front++);
+				if (nums.get(i - 1) <= sum) {
+					dp[i][sum] = dp[i - 1][sum] || dp[i - 1][sum - nums.get(i - 1)];
+				} else {
+					dp[i][sum] = dp[i - 1][sum];
+				}
+			}
+		}
 
-            time = Math.max(time, current.time);
+		int minDiff = Integer.MAX_VALUE;
 
-            for (int k = 0; k < 4; k++) {
-                int nr = current.row + dr[k];
-                int nc = current.col + dc[k];
+		// Check only half of totalSum
+		for (int s1 = 0; s1 <= totalSum / 2; s1++) {
+			if (dp[n][s1]) {
+				int s2 = totalSum - s1;
+				minDiff = Math.min(minDiff, Math.abs(s2 - s1));
+			}
+		}
 
-                if (nr >= 0 && nr < rows &&
-                    nc >= 0 && nc < cols &&
-                    grid.get(nr).get(nc) == 1) {
+		return minDiff;
+	}
 
-                    grid.get(nr).set(nc, 2);
-                    fresh--;
-                    queue.add(new Cell(nr, nc, current.time + 1));
-                }
-            }
-        }
+	public static void main(String[] args) {
 
-        return fresh == 0 ? time : -1;
-    }
+		ArrayList<Integer> nums = new ArrayList<>();
 
-    public static void main(String[] args) {
+		nums.add(1);
+		nums.add(6);
+		nums.add(11);
+		nums.add(5);
 
-        ArrayList<ArrayList<Integer>> grid = new ArrayList<>();
-
-        grid.add(new ArrayList<>());
-        grid.get(0).add(2);
-        grid.get(0).add(1);
-        grid.get(0).add(1);
-
-        grid.add(new ArrayList<>());
-        grid.get(1).add(1);
-        grid.get(1).add(1);
-        grid.get(1).add(0);
-
-        grid.add(new ArrayList<>());
-        grid.get(2).add(0);
-        grid.get(2).add(1);
-        grid.get(2).add(1);
-
-        System.out.println("Minimum Time: " + minimumTimeToRot(grid));
-    }
+		System.out.println("Minimum Subset Sum Difference: " + minimumSubsetSumDifference(nums));
+	}
 }
