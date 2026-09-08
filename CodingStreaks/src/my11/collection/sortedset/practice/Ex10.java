@@ -2,7 +2,7 @@ package my11.collection.sortedset.practice;
 
 import java.util.*;
 
-public class Ex12 {
+public class Ex10 {
 	public static void main(String[] args) {
 
 		SortedSet<Integer> numbers = new TreeSet<>();
