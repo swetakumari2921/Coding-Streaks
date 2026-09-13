@@ -7,7 +7,7 @@ public class Ex16 {
 
 		Scanner sc = new Scanner(System.in);
 
-		LinkedList<Integer> number = new LinkedList<>();
+		LinkedHashSet<Integer> number = new LinkedHashSet<>();
 
 		System.out.println("Enter 5 numbers:");
 
@@ -15,16 +15,7 @@ public class Ex16 {
 			number.add(sc.nextInt());
 		}
 
-		int count = 0;
-
-		for (int i = 0; i < number.size(); i++) {
-
-			if (number.indexOf(number.get(i)) == i) {
-				count++;
-			}
-		}
-
-		System.out.println("Number of unique numbers: " + count);
+		System.out.println("Number of unique numbers: " + number.size());
 
 		sc.close();
 	}
